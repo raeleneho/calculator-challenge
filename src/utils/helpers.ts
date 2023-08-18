@@ -4,7 +4,7 @@ export const getInterestRatePerPeriod= (interestRatePerAnnum: number, numberOfMo
     
     return interestRatePerMonth * numberOfMonthsPerPeriod 
 }
-
+//comment
 export const compoundInterest = (initialAmount: number, interestRatePerAnnum: number, investmentTermMonths: number, numMonthsPerPayPeriod: number):number => {  
    const interestRatePerPeriod = getInterestRatePerPeriod(interestRatePerAnnum, numMonthsPerPayPeriod);
    

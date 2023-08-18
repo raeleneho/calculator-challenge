@@ -14,7 +14,7 @@ const numberOfMonthsPerPayPeriod = ref(1)
 
 const interestPaidSelection = ref('')
 
-function hello() {
+function onSelect() {
   interestPaidSelection.value === 'maturity'
     ? (currentMode.value = 'simple')
     : (currentMode.value = 'compound')
@@ -89,7 +89,7 @@ const maturityAmount = computed(() => {
         <div class="flex">
           <v-btn-toggle
             v-model="interestPaidSelection"
-            @update:model-value="hello()"
+            @update:model-value="onSelect()"
             rounded="2"
             class="elevation-2"
             color="orange-accent-1"
