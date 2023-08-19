@@ -1,26 +1,7 @@
 <script setup lang="ts">
-
-import Calculator from './components/Calculator.vue'
-
+import CalculatorWrapper from './components/CalculatorWrapper.vue'
 </script>
 
 <template>
- 
-    <div class="wrapper">
-      
-      <Calculator />
-    </div>
-
-
+  <CalculatorWrapper />
 </template>
-
-<style scoped>
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  /* align-items: center;
-  justify-content: center; */
-
-}
-</style>
