@@ -13,8 +13,8 @@ TypeScript cannot handle type information for `.vue` imports by default, so we r
 If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
 
 1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
 ## Customize configuration
@@ -50,3 +50,20 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+## Calculator Info
+
+### Assumptions
+
+- Length of Month
+- All months are assumed to be of equal length.
+
+- Number of Weeks in a Year
+- Monthly and quarterly figures are calculated assuming each period is of even length e.g. month is annual figure divided by 12, quarterly is annual figure divided by 4. As interest is calculated daily, figures may differ from actual amounts earned.
+
+- Early withdrawal before maturity period
+- If you withdraw your investment before a full cycle is completed,the remaining time is calculated on simple interest rate.
+- Always refer to the terms and conditions provided by financial provider for accurate calculations.
+
+- Rounding of Amounts of Total Accumulation and Interest Earned
+- The amounts of total accumulation and interest earned are rounded to two decimals.
