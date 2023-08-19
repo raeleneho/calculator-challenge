@@ -1,10 +1,14 @@
-
-export const getInterestRatePerPeriod= (interestRatePerAnnum: number, numberOfMonthsPerPeriod: number) => {
+export const getInterestRatePerPeriod = (interestRatePerAnnum: number, numberOfMonthsPerPeriod: number) => {
     const interestRatePerMonth = (interestRatePerAnnum/100) / 12;
     
     return interestRatePerMonth * numberOfMonthsPerPeriod 
 }
 
+export const simpleInterest = (initialAmount: number, interestRate: number, investmentTermMonths: number): number => {  
+    const maturityAmount = initialAmount * (1 + (interestRate/100) * investmentTermMonths / 12);
+    return Number(maturityAmount.toFixed(2));
+    }
+    
 export const compoundInterest = (initialAmount: number, interestRatePerAnnum: number, investmentTermMonths: number, numMonthsPerPayPeriod: number):number => {  
    const interestRatePerPeriod = getInterestRatePerPeriod(interestRatePerAnnum, numMonthsPerPayPeriod);
    
@@ -20,7 +24,3 @@ export const compoundInterest = (initialAmount: number, interestRatePerAnnum: nu
 }
 
 
-export const simpleInterest = (initialAmount: number, interestRate: number, investmentTermMonths: number): number => {  
-const maturityAmount = initialAmount * (1 + (interestRate/100) * investmentTermMonths / 12);
-return Number(maturityAmount.toFixed(2));
-}

@@ -5,13 +5,10 @@ import { compoundInterest, simpleInterest } from '../utils/helpers'
 const valid = ref(false)
 
 const currentMode: Ref<'simple' | 'compound'> = ref('compound')
-
 const initialAmount = ref(0)
 const interestRate = ref(2)
 const investmentTermInMonths = ref(12)
-
 const numberOfMonthsPerPayPeriod = ref(1)
-
 const interestPaidSelection = ref('monthly')
 
 const numberRules = ref([
@@ -25,23 +22,13 @@ function onSelect() {
     : (currentMode.value = 'compound')
 
   if (interestPaidSelection.value === 'monthly') {
-    return (numberOfMonthsPerPayPeriod.value = 12)
+    return (numberOfMonthsPerPayPeriod.value = 1)
   } else if (interestPaidSelection.value === 'quarterly') {
     return (numberOfMonthsPerPayPeriod.value = 3)
   } else {
-    return (numberOfMonthsPerPayPeriod.value = 1)
+    return (numberOfMonthsPerPayPeriod.value = 12)
   }
 }
-
-// const numberOfMonthsPerPayPeriod = computed(() => {
-//   if (interestPaidSelection.value === 'monthly') {
-//     return 12
-//   } else if (interestPaidSelection.value === 'quarterly') {
-//     return 3
-//   } else if (interestPaidSelection.value === 'annually') {
-//     return 1
-//   }
-// })
 
 const maturityAmount = computed(() => {
   return currentMode.value === 'simple'
@@ -78,16 +65,9 @@ const maturityAmount = computed(() => {
         rounded="md"
         suffix="% p.a."
       ></v-text-field>
-      <!-- <v-text-field
-          v-model="numberOfMonthsPerPayPeriod"
-          variant="solo"
-          label="Interest paid every n (month/s)"
-          required
-          clearable
-        ></v-text-field> -->
 
       <div>
-        <v-label class="label mb-1">Interest paid</v-label>
+        <v-label class="label mb-1">Interest Paid</v-label>
         <v-btn-toggle
           v-model="interestPaidSelection"
           @update:model-value="onSelect()"
@@ -98,9 +78,7 @@ const maturityAmount = computed(() => {
           class="d-flex mb-6"
         >
           <v-btn color="blue" size="small" value="monthly"> monthly </v-btn>
-
           <v-btn color="blue" size="small" value="quarterly"> quarterly </v-btn>
-
           <v-btn color="blue" size="small" value="annually"> annually </v-btn>
           <v-btn color="blue" size="small" value="maturity"> at maturity </v-btn>
         </v-btn-toggle>
@@ -128,18 +106,17 @@ const maturityAmount = computed(() => {
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-}
+  .label {
+    font-size: 0.8rem;
+  }
+  .title {
+    font-size: 1.4rem;
+    color: #231f20;
+  }
 
-.label {
-  font-size: 0.8rem;
-}
-.title {
-  font-size: 1.4rem;
-  color: #231f20;
-}
-
-.bottom-display {
-  font-size: 4.4rem;
-  color: #6185ba;
+  .bottom-display {
+    font-size: 4.4rem;
+    color: #6185ba;
+  }
 }
 </style>
