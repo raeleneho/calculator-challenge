@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { computed, ref, type Ref } from 'vue'
 import { compoundInterest, simpleInterest } from '../utils/helpers'
+import { useDisplay } from 'vuetify'
 
+const { smAndDown } = useDisplay()
 const valid = ref(false)
 
 const currentMode: Ref<'simple' | 'compound'> = ref('compound')
@@ -43,8 +45,8 @@ const maturityAmount = computed(() => {
 </script>
 
 <template>
-  <v-card class="pa-6 bg-white-1 rounded-xl card" max-width="500" rounded="rounded-lg">
-    <h1 class="title mb-2">Term Deposit Calculator</h1>
+  <v-card class="pa-3 pa-sm-6 bg-white-1 rounded-xl card" rounded="rounded-lg">
+    <h1 class="title mb-4 text-center text-sm-left">Term Deposit Calculator</h1>
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field
         v-model.number="initialAmount"
@@ -66,23 +68,51 @@ const maturityAmount = computed(() => {
         suffix="% p.a."
       ></v-text-field>
 
-      <div>
-        <v-label class="label mb-1">Interest Paid</v-label>
-        <v-btn-toggle
-          v-model="interestPaidSelection"
-          @update:model-value="onSelect()"
-          rounded="xl"
-          variant="outlined"
-          color="orange-accent-1"
-          group
-          class="d-flex mb-6"
+      <v-label class="label mb-1">Interest Paid</v-label>
+
+      <v-btn-toggle
+        v-model="interestPaidSelection"
+        @update:model-value="onSelect()"
+        rounded="xl"
+        variant="outlined"
+        color="orange-accent-1"
+        group
+        class="d-flex mb-6"
+      >
+        <v-btn
+          color="blue"
+          :size="smAndDown ? 'x-small' : 'small'"
+          :class="smAndDown ? 'select-btn' : ''"
+          value="monthly"
         >
-          <v-btn color="blue" size="small" value="monthly"> monthly </v-btn>
-          <v-btn color="blue" size="small" value="quarterly"> quarterly </v-btn>
-          <v-btn color="blue" size="small" value="annually"> annually </v-btn>
-          <v-btn color="blue" size="small" value="maturity"> at maturity </v-btn>
-        </v-btn-toggle>
-      </div>
+          monthly
+        </v-btn>
+        <v-btn
+          color="blue"
+          :size="smAndDown ? 'x-small' : 'small'"
+          :class="smAndDown ? 'select-btn' : ''"
+          value="quarterly"
+        >
+          quarterly
+        </v-btn>
+
+        <v-btn
+          color="blue"
+          :size="smAndDown ? 'x-small' : 'small'"
+          :class="smAndDown ? 'select-btn' : ''"
+          value="annually"
+        >
+          annually
+        </v-btn>
+        <v-btn
+          color="blue"
+          :size="smAndDown ? 'x-small' : 'small'"
+          :class="smAndDown ? 'select-btn' : ''"
+          value="maturity"
+        >
+          at maturity
+        </v-btn>
+      </v-btn-toggle>
 
       <v-text-field
         v-model.number="investmentTermInMonths"
@@ -106,6 +136,7 @@ const maturityAmount = computed(() => {
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  max-width: 100vw;
   .label {
     font-size: 0.8rem;
   }
@@ -114,6 +145,14 @@ const maturityAmount = computed(() => {
     color: #231f20;
   }
 
+  .select-btn {
+    padding: 4px;
+    white-space: nowrap;
+
+    span {
+      display: block;
+    }
+  }
   .bottom-display {
     font-size: 4.4rem;
     color: #6185ba;
