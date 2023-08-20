@@ -15,7 +15,7 @@ const interestPaidSelection = ref('monthly')
 
 const numberRules = ref([
   (v: any) => String(v).length > 0 || 'This field is required',
-  (v: any) => Number.isInteger(v) || 'This field must be numeric'
+  (v: any) => (!isNaN(parseFloat(v)) && isFinite(v)) || 'This field must be numeric'
 ])
 
 function onSelect() {
